@@ -1,4 +1,4 @@
-package org.example;
+package org.swcclient;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
