@@ -3,7 +3,6 @@ package org.swcclient.model;
 import lombok.Getter;
 import java.time.LocalDateTime;
 
-
 @Getter
 public class Message{
     private final User sender;
@@ -11,7 +10,7 @@ public class Message{
     private final String content;
     private final LocalDateTime timestamp;
 
-    public Message(User sender, User receiver, String content) {
+    private Message(User sender, User receiver, String content) {
         this.sender = sender;
         this.receiver = receiver;
         this.content = content;
@@ -34,11 +33,17 @@ public class Message{
         return receiver.getUsername();
     }
 
+    public static Message createMessage(User sender, User receiver, String content){
+        return new Message(sender, receiver, content);
+    }
+
     @Override
     public String toString(){
         return String.format(
-                "content: %s, sender id: %d, sender username: %s, receiver id: %d, receiver username: %s",
-                content, getSenderID(), getSenderUsername(), getReceiverID(), getReceiverUsername()
+                "content: %s\nsender id: %d\nsender username: %s\n" +
+                        "receiver id: %d\nreceiver username: %s\ntimestamp: %s",
+                content, getSenderID(), getSenderUsername(),
+                getReceiverID(), getReceiverUsername(), timestamp
         );
     }
 }
